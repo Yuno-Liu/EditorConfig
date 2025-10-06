@@ -1,0 +1,443 @@
+# Reference: https://github.com/dotnet/roslyn/blob/master/.editorconfig
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+# 將此檔案設定為最頂層的 EditorConfig，停止向上查找
+root = true
+
+# Don't use tabs for indentation.
+[*] # 適用於所有檔案
+
+# 縮排風格：使用空格
+indent_style = space
+# 行尾符號：使用 LF (Linux/macOS 慣例)
+end_of_line = lf
+# 移除行尾多餘空白（有助於版本控制與乾淨 diffs）
+trim_trailing_whitespace = true
+
+[.md]
+# Markdown 檔案不移除行尾空白（Markdown 語法中有時需要行尾空白來表示換行）
+trim_trailing_whitespace = false
+
+# Code files
+[*.{cs,csx,vb,vbx}] # 適用於 C#、Visual Basic 程式碼和腳本檔案
+
+# 縮排大小：4 個空格
+indent_size = 4
+# 檔案結尾插入一個換行符
+insert_final_newline = true
+# 檔案編碼：使用 UTF-8
+charset = utf-8
+
+# XML project files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}] # 適用於各種專案相關的 XML 檔案
+
+# 縮排大小：2 個空格
+indent_size = 2
+
+# XML config files
+[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}] # 適用於 MSBuild 屬性/目標、設定、資源等 XML 檔案
+
+# 縮排大小：2 個空格
+indent_size = 2
+
+# JSON files
+[*.json]
+
+# 縮排大小：2 個空格
+indent_size = 2
+
+# Powershell files
+[*.ps1]
+
+# 縮排大小：2 個空格
+indent_size = 2
+
+# Shell script files
+[*.sh]
+
+# 行尾符號：使用 LF (Linux/macOS 慣例)
+end_of_line = lf
+# 縮排大小：2 個空格
+indent_size = 2
+
+# Dotnet code style settings:
+[*.{cs,vb}] # 適用於所有 .NET 程式碼檔案
+
+# IDE0055: Fix formatting
+# IDE0055：修正格式錯誤的診斷等級設定為警告
+dotnet_diagnostic.IDE0055.severity = warning
+
+# Sort using and Import directives with System.* appearing first
+# 讓 System 命名空間的引用優先排序在最前面
+dotnet_sort_system_directives_first = true
+# 不區分引用群組 (例如：不將 System 與其他引用分開)
+dotnet_separate_import_directive_groups = false
+
+# Avoid "this." and "Me." if not necessary
+# 欄位限定符：如果非必要，避免使用 "this." 或 "Me." (重構建議等級)
+dotnet_style_qualification_for_field = false:refactoring
+# 屬性限定符：如果非必要，避免使用 "this." 或 "Me." (重構建議等級)
+dotnet_style_qualification_for_property = false:refactoring
+# 方法限定符：如果非必要，避免使用 "this." 或 "Me." (重構建議等級)
+dotnet_style_qualification_for_method = false:refactoring
+# 事件限定符：如果非必要，避免使用 "this." 或 "Me." (重構建議等級)
+dotnet_style_qualification_for_event = false:refactoring
+
+# Use language keywords instead of framework type names for type references
+# 區域變數、參數和成員型別使用預定義型別關鍵字 (如 int 代替 Int32) (建議)
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+# 成員存取時也使用預定義型別關鍵字 (建議)
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# Suggest more modern language features when available
+# 偏好使用物件初始化器 (建議)
+dotnet_style_object_initializer = true:suggestion
+# 偏好使用集合初始化器 (建議)
+dotnet_style_collection_initializer = true:suggestion
+# 偏好使用 null 聯合運算式 (??) (建議)
+dotnet_style_coalesce_expression = true:suggestion
+# 偏好使用 null 條件運算子 (?.) (建議)
+dotnet_style_null_propagation = true:suggestion
+# 偏好在 Tuple 中明確命名元素 (建議)
+dotnet_style_explicit_tuple_names = true:suggestion
+
+# Non-private static fields are PascalCase
+# 非私有的靜態欄位應該使用 PascalCase 命名 (建議)
+dotnet_naming_rule.non_private_static_fields_should_be_pascal_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.non_private_static_fields_should_be_pascal_case.symbols = non_private_static_fields
+# 套用此命名規則的風格
+dotnet_naming_rule.non_private_static_fields_should_be_pascal_case.style = non_private_static_field_style
+
+# 適用於欄位
+dotnet_naming_symbols.non_private_static_fields.applicable_kinds = field
+# 適用於非 private 存取級別 (public, protected, internal 等)
+dotnet_naming_symbols.non_private_static_fields.applicable_accessibilities = public, protected, internal, protected_internal, private_protected
+# 必須是 static 修飾符
+dotnet_naming_symbols.non_private_static_fields.required_modifiers = static
+
+# 命名風格：PascalCase
+dotnet_naming_style.non_private_static_field_style.capitalization = pascal_case
+
+# Non-private readonly fields are PascalCase
+# 非私有的唯讀欄位應該使用 PascalCase 命名 (建議)
+dotnet_naming_rule.non_private_readonly_fields_should_be_pascal_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.non_private_readonly_fields_should_be_pascal_case.symbols = non_private_readonly_fields
+# 套用此命名規則的風格
+dotnet_naming_rule.non_private_readonly_fields_should_be_pascal_case.style = non_private_readonly_field_style
+
+# 適用於欄位
+dotnet_naming_symbols.non_private_readonly_fields.applicable_kinds = field
+# 適用於非 private 存取級別 (public, protected, internal 等)
+dotnet_naming_symbols.non_private_readonly_fields.applicable_accessibilities = public, protected, internal, protected_internal, private_protected
+# 必須是 readonly 修飾符
+dotnet_naming_symbols.non_private_readonly_fields.required_modifiers = readonly
+
+# 命名風格：PascalCase
+dotnet_naming_style.non_private_readonly_field_style.capitalization = pascal_case
+
+# Constants are PascalCase
+# 常數應該使用 PascalCase 命名 (建議)
+dotnet_naming_rule.constants_should_be_pascal_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.constants_should_be_pascal_case.symbols = constants
+# 套用此命名規則的風格
+dotnet_naming_rule.constants_should_be_pascal_case.style = constant_style
+
+# 適用於欄位和區域變數
+dotnet_naming_symbols.constants.applicable_kinds = field, local
+# 必須是 const 修飾符
+dotnet_naming_symbols.constants.required_modifiers = const
+
+# 命名風格：PascalCase
+dotnet_naming_style.constant_style.capitalization = pascal_case
+
+# Static fields are camelCase and start with s_
+# 靜態欄位應該使用 camelCase 並以 s_ 開頭命名 (建議)
+dotnet_naming_rule.static_fields_should_be_camel_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.static_fields_should_be_camel_case.symbols = static_fields
+# 套用此命名規則的風格
+dotnet_naming_rule.static_fields_should_be_camel_case.style = static_field_style
+
+# 適用於欄位
+dotnet_naming_symbols.static_fields.applicable_kinds = field
+# 必須是 static 修飾符
+dotnet_naming_symbols.static_fields.required_modifiers = static
+
+# 命名風格：camelCase
+dotnet_naming_style.static_field_style.capitalization = camel_case
+# 必須以 s_ 開頭
+dotnet_naming_style.static_field_style.required_prefix = s_
+
+# Instance fields are camelCase and start with _
+# 實例欄位應該使用 camelCase 並以 _ 開頭命名 (建議)
+dotnet_naming_rule.instance_fields_should_be_camel_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.instance_fields_should_be_camel_case.symbols = instance_fields
+# 套用此命名規則的風格
+dotnet_naming_rule.instance_fields_should_be_camel_case.style = instance_field_style
+
+# 適用於欄位
+dotnet_naming_symbols.instance_fields.applicable_kinds = field
+
+# 命名風格：camelCase
+dotnet_naming_style.instance_field_style.capitalization = camel_case
+# 必須以 _ 開頭
+dotnet_naming_style.instance_field_style.required_prefix = _
+
+# Locals and parameters are camelCase
+# 區域變數和參數應該使用 camelCase 命名 (建議)
+dotnet_naming_rule.locals_should_be_camel_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.locals_should_be_camel_case.symbols = locals_and_parameters
+# 套用此命名規則的風格
+dotnet_naming_rule.locals_should_be_camel_case.style = camel_case_style
+
+# 適用於參數和區域變數
+dotnet_naming_symbols.locals_and_parameters.applicable_kinds = parameter, local
+
+# 命名風格：camelCase
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+# Local functions are PascalCase
+# 區域函式應該使用 PascalCase 命名 (建議)
+dotnet_naming_rule.local_functions_should_be_pascal_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.local_functions_should_be_pascal_case.symbols = local_functions
+# 套用此命名規則的風格
+dotnet_naming_rule.local_functions_should_be_pascal_case.style = local_function_style
+
+# 適用於區域函式
+dotnet_naming_symbols.local_functions.applicable_kinds = local_function
+
+# 命名風格：PascalCase
+dotnet_naming_style.local_function_style.capitalization = pascal_case
+
+# By default, name items with PascalCase
+# 預設情況下，所有成員都使用 PascalCase 命名 (建議)
+dotnet_naming_rule.members_should_be_pascal_case.severity = suggestion
+# 套用此命名規則的符號集合
+dotnet_naming_rule.members_should_be_pascal_case.symbols = all_members
+# 套用此命名規則的風格
+dotnet_naming_rule.members_should_be_pascal_case.style = pascal_case_style
+
+# 適用於所有型別的成員 (這是預設規則)
+dotnet_naming_symbols.all_members.applicable_kinds = *
+
+# 命名風格：PascalCase
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# error RS2008: Enable analyzer release tracking for the analyzer project containing rule '{0}'
+# 停用 RS2008 診斷 (Roslyn 內部相關)
+dotnet_diagnostic.RS2008.severity = none
+
+# IDE0073: File header
+# 將檔案標頭不符設定為警告
+dotnet_diagnostic.IDE0073.severity = warning
+# 必須使用的檔案標頭內容 (版權聲明)
+file_header_template = Licensed to the .NET Foundation under one or more agreements.\nThe .NET Foundation licenses this file to you under the MIT license.\nSee the LICENSE file in the project root for more information.
+
+# IDE0035: Remove unreachable code
+# IDE0035：移除無法達到的程式碼設定為警告
+dotnet_diagnostic.IDE0035.severity = warning
+
+# IDE0036: Order modifiers
+# IDE0036：修飾符順序設定為警告
+dotnet_diagnostic.IDE0036.severity = warning
+
+# IDE0043: Format string contains invalid placeholder
+# IDE0043：格式字串包含無效的佔位符設定為警告
+dotnet_diagnostic.IDE0043.severity = warning
+
+# IDE0044: Make field readonly
+# IDE0044：將欄位設為唯讀設定為警告
+dotnet_diagnostic.IDE0044.severity = warning
+
+# CSharp code style settings:
+[*.cs] # 僅適用於 C# 檔案
+# C# 10+ 現代寫法偏好：檔案範圍 namespace（若團隊使用，可改為 warning 或 suggestion）
+csharp_style_namespace_declarations = file_scoped:suggestion
+# 推論 tuple / anonymous type 成員名稱偏好（現代 C#）
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+
+# Newline settings
+# 在所有大括號 `{` 前面換行 (例如：類別、方法、if 區塊)
+csharp_new_line_before_open_brace = all
+# 在 `else` 前換行
+csharp_new_line_before_else = true
+# 在 `catch` 前換行
+csharp_new_line_before_catch = true
+# 在 `finally` 前換行
+csharp_new_line_before_finally = true
+# 在物件初始化器中的成員前換行
+csharp_new_line_before_members_in_object_initializers = true
+# 在匿名型別中的成員前換行
+csharp_new_line_before_members_in_anonymous_types = true
+# 在 LINQ 查詢運算式子句間換行 (例如 `from... where... select...` 之間)
+csharp_new_line_between_query_expression_clauses = true
+
+# Indentation preferences
+# 區塊內容 (如方法體) 縮排
+csharp_indent_block_contents = true
+# 大括號不縮排 (與區塊內容對齊)
+csharp_indent_braces = false
+# switch case 內容縮排
+csharp_indent_case_contents = true
+# switch case 內容若為區塊時也縮排
+csharp_indent_case_contents_when_block = true
+# switch case 標籤縮排
+csharp_indent_switch_labels = true
+# 標籤 (Label) 靠左對齊
+csharp_indent_labels = flush_left
+
+# Prefer "var" everywhere
+# 內建型別 (如 int, string) 使用 var (建議)
+csharp_style_var_for_built_in_types = true:suggestion
+# 當型別明顯時使用 var (建議)
+csharp_style_var_when_type_is_apparent = true:suggestion
+# 其他情況下也使用 var (建議)
+csharp_style_var_elsewhere = true:suggestion
+
+# Prefer method-like constructs to have a block body
+# 方法不使用表達式主體 (無建議)
+csharp_style_expression_bodied_methods = false:none
+# 建構函式不使用表達式主體 (無建議)
+csharp_style_expression_bodied_constructors = false:none
+# 運算子不使用表達式主體 (無建議)
+csharp_style_expression_bodied_operators = false:none
+
+# Prefer property-like constructs to have an expression-body
+# 屬性使用表達式主體 (無建議)
+csharp_style_expression_bodied_properties = true:none
+# 索引器使用表達式主體 (無建議)
+csharp_style_expression_bodied_indexers = true:none
+# 存取子 (getter/setter) 使用表達式主體 (無建議)
+csharp_style_expression_bodied_accessors = true:none
+
+# Suggest more modern language features when available
+# 偏好使用模式匹配 (pattern matching) 而非 is 檢查後再強制轉型 (建議)
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+# 偏好使用模式匹配而非 as 檢查後再 null 檢查 (建議)
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+# 偏好在 out 參數的位置內聯變數宣告 (建議)
+csharp_style_inlined_variable_declaration = true:suggestion
+# 偏好使用 throw 表達式 (建議)
+csharp_style_throw_expression = true:suggestion
+# 偏好使用條件委派呼叫 (?.Invoke) (建議)
+csharp_style_conditional_delegate_call = true:suggestion
+
+# Space preferences
+# 轉型運算式後沒有空格
+csharp_space_after_cast = false
+# 繼承子句中的冒號 : 後面有空格
+csharp_space_after_colon_in_inheritance_clause = true
+# 逗號後有空格
+csharp_space_after_comma = true
+# 點號 . 後沒有空格
+csharp_space_after_dot = false
+# 控制流程關鍵字 (如 if, for) 後面有空格
+csharp_space_after_keywords_in_control_flow_statements = true
+# for 迴圈分號後有空格
+csharp_space_after_semicolon_in_for_statement = true
+# 二元運算符前後都有空格
+csharp_space_around_binary_operators = before_and_after
+# 宣告語句周圍的空格 (不忽略)
+csharp_space_around_declaration_statements = do_not_ignore
+# 繼承子句中的冒號 : 前面有空格
+csharp_space_before_colon_in_inheritance_clause = true
+# 逗號前沒有空格
+csharp_space_before_comma = false
+# 點號 . 前沒有空格
+csharp_space_before_dot = false
+# 開方括號 [ 前沒有空格
+csharp_space_before_open_square_brackets = false
+# for 迴圈分號前沒有空格
+csharp_space_before_semicolon_in_for_statement = false
+# 空方括號之間沒有空格 (e.g., `[]`)
+csharp_space_between_empty_square_brackets = false
+# 呼叫無參數方法時括號之間沒有空格 (e.g., `Method()`)
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+# 呼叫方法名稱與開括號之間沒有空格 (e.g., `Method(`)
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+# 呼叫方法參數列表括號之間沒有空格
+csharp_space_between_method_call_parameter_list_parentheses = false
+# 宣告無參數方法時括號之間沒有空格 (e.g., `Method()`)
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+# 宣告方法名稱與開括號之間沒有空格 (e.g., `Method(`)
+csharp_space_between_method_declaration_name_and_open_parenthesis = false
+# 宣告方法參數列表括號之間沒有空格
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+# 圓括號之間沒有空格
+csharp_space_between_parentheses = false
+# 方括號之間沒有空格
+csharp_space_between_square_brackets = false
+
+# Blocks are allowed
+# 偏好使用大括號 (靜默建議)
+csharp_prefer_braces = true:silent
+# 保留單行區塊 (例如：`if (x) { ... }`)
+csharp_preserve_single_line_blocks = true
+# 保留單行語句
+csharp_preserve_single_line_statements = true
+
+# warning RS0037: PublicAPI.txt is missing '#nullable enable'
+# 停用 RS0037 診斷 (Roslyn 內部 PublicAPI 追蹤相關)
+dotnet_diagnostic.RS0037.severity = none
+
+[src/CodeStyle/**.{cs,vb}] # 僅適用於 CodeStyle 資料夾下的檔案
+
+# warning RS0005: Do not use generic CodeAction.Create to create CodeAction
+# 停用 RS0005 診斷 (Roslyn 內部程式碼動作相關)
+dotnet_diagnostic.RS0005.severity = none
+
+[src/{Analyzers,CodeStyle,Features,Workspaces,EditorFeatures, VisualStudio}/**/*.{cs,vb}] # 適用於多個 Roslyn 內部資料夾下的檔案
+
+# IDE0011: Add braces
+# 當程式碼超過一行時，強制使用大括號 (設定為警告)
+csharp_prefer_braces = when_multiline:warning
+# 必須設定這個診斷等級為 warning (避免 Roslyn 內部問題)
+dotnet_diagnostic.IDE0011.severity = warning
+
+# IDE0040: Add accessibility modifiers
+# IDE0040：添加存取修飾符設定為警告
+dotnet_diagnostic.IDE0040.severity = warning
+
+# CONSIDER: Are IDE0051 and IDE0052 too noisy to be warnings for IDE editing scenarios? Should they be made build-only warnings?
+# IDE0051: Remove unused private member
+# IDE0051：移除未使用的私有成員設定為警告
+dotnet_diagnostic.IDE0051.severity = warning
+
+# IDE0052: Remove unread private member
+# IDE0052：移除未讀取的私有成員設定為警告
+dotnet_diagnostic.IDE0052.severity = warning
+
+# IDE0059: Unnecessary assignment to a value
+# IDE0059：對某個值進行不必要的賦值設定為警告
+dotnet_diagnostic.IDE0059.severity = warning
+
+# IDE0060: Remove unused parameter
+# IDE0060：移除未使用的參數設定為警告
+dotnet_diagnostic.IDE0060.severity = warning
+
+# CA1822: Make member static
+# CA1822：將成員設為靜態設定為警告
+dotnet_diagnostic.CA1822.severity = warning
+
+# Prefer "var" everywhere
+# IDE0007 (使用 var) 的診斷等級設定為警告 (在特定資料夾內覆蓋)
+dotnet_diagnostic.IDE0007.severity = warning
+# 內建型別使用 var (警告)
+csharp_style_var_for_built_in_types = true:warning
+# 當型別明顯時使用 var (警告)
+csharp_style_var_when_type_is_apparent = true:warning
+# 其他情況下也使用 var (警告)
+csharp_style_var_elsewhere = true:warning
+
+[src/{VisualStudio}/**/*.{cs,vb}] # 僅適用於 VisualStudio 相關資料夾下的檔案
+# CA1822: Make member static
+# 在此層級，將 CA1822 (設為靜態) 降級為建議 (suggestion)，以減少誤報和潛在的內部 API 破壞風險
+dotnet_diagnostic.CA1822.severity = suggestion
